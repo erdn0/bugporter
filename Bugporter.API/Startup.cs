@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using Bugporter.API.Features.ReportBug.GitHub;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,21 +15,8 @@ namespace Bugporter.API
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            builder.Services.AddSingleton<HelloWorld>();
+            builder.Services.AddSingleton<CreateGitHubIssueCommand>();
         }
 
-        public class HelloWorld
-        {
-            private readonly ILogger<HelloWorld> _logger;
-            public HelloWorld(ILogger<HelloWorld> logger)
-            {
-                _logger = logger;
-            }
-
-            public void Run()
-            {
-                _logger.LogInformation("Merhaba dünya!");
-            }
-        }
     }
 }
